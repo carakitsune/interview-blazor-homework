@@ -28,6 +28,18 @@
 
     private void Calculate()
     {
-        result = $"{numberA + numberB + numberC}";
+        var nagativeB = numberB * -1;
+
+        var squareB = numberB * numberB;
+        var fourTimesAC = 4 * numberA * numberC;
+        var squareRoot = Math.Sqrt(squareB - fourTimesAC);
+
+        var upperDevisionPartFirstResult = nagativeB + squareRoot;
+        var upperDevisionPartSecondResult = nagativeB - squareRoot;
+        var lowerDevisionPart = 2 * numberA;
+
+        var firstResult = upperDevisionPartFirstResult / lowerDevisionPart;
+        var secondResult = upperDevisionPartSecondResult / lowerDevisionPart;
+        result = $"The Results are {firstResult} and {secondResult}";
     }
 }
