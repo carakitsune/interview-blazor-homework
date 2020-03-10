@@ -9,9 +9,8 @@ namespace BlazorApp2.Server.Controllers
         [HttpGet("Get")]
         public string Get()
         {
-            // var wins = System.IO.File.ReadAllText("../TestData/test.csv");
-            // System.Console.WriteLine("Contents of WriteText.txt = {0}", wins);
-            return "blubb result";
+            var wins = System.IO.File.ReadAllText("./TestData/test.csv");
+            return wins;
             // TODO: Implement the Get Method. Return type is "void" now however you should change this depending of what type you are going to return.
         }
     }
