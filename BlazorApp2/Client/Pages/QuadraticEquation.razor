@@ -7,6 +7,14 @@
         <div class="card-body">
             <p>Requirements: Implement 3 number inputs, text result and button for triggering algorithm, which will solve quadratic equation Ax^2 + Bx + C = 0</p>
         </div>
+            <p><label for="numberA">A:</label><br>
+            <input type="number" @bind="numberA" /></p>
+            <p><label for="numberB">B:</label><br>
+            <input type="number" @bind="numberB" /></p>
+            <p><label for="numberC">C:</label><br>
+            <input type="number" @bind="numberC" /></p>
+            <button class="btn btn-primary" @onclick="Calculate">Click me</button>
+        <p>@result</p>
     </div>
 <br />
 
@@ -18,5 +26,8 @@
     public double numberB { get; set; }
     public double numberC { get; set; }
 
-
+    private void Calculate()
+    {
+        result = $"{numberA + numberB + numberC}";
+    }
 }
