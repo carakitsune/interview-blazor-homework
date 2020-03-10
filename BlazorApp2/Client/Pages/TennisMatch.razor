@@ -1,5 +1,4 @@
 ﻿@page "/TennisMatch"
-@using BlazorApp2.Shared
 @inject HttpClient Http
 
 <div class="card mt-2">
@@ -10,16 +9,29 @@
     <div class="card-body">
         <p>Requirements: Load results of the tennis winner from the backend and display it in table. Also tell us who is the winner.</p>
     </div>
-
+    <div>
+        @if (!requestSuccess) { <div class="alert alert-danger" role="alert">@status</div> }
+        else if (wins == null) { <p><em>Loading...</em></p> }
+        else { <p>The wins are: @wins</p> <p><em>Everything is fine</em></p> }
+    </div>
 </div>
 
 
 @code {
+    private string wins;
+    private bool requestSuccess = true;
+    private string status;
     protected override async Task OnInitializedAsync()
     {
         // TODO: In this case it makes sense to call API directly during initialization.
         // SO inside this method you should receive the data using API call.
         // You can however do it your way if you prefer to :)
+        try {
+            wins = await Http.GetStringAsync("TennisMatch/Get");
+        }
+        catch(Exception e) {
+            requestSuccess = false;
+            status = "ERROR: " + e.Message;
+        }   
     }
-
 }
