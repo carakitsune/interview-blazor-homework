@@ -1,0 +1,56 @@
+﻿@page "/"
+
+    <h1>
+        Hello, world!<br />
+        Welcome to the Blazor excercise app!
+    </h1>
+
+    <h4><br />In the menu you find 4 links (+ Home).</h4>
+
+<p>
+    <strong>Counter</strong> (Example)<br />
+    Counter is a simple example of blazor page. You can see basics of razor syntax - how to mix C# with HTML, do simple property binding and some easy logic affecting UI directly.
+    <br /><br />
+    The code for this example can be found in Client/Pages/Counter.
+</p>
+
+<p>
+    <strong>Fetch Data</strong> (Example)<br />
+    Fetch data is an example of how data can be fetched from the API (backend side of the app). API is the "Server" project in the solution.
+    This page demonstrates even more of Razor syntax dynamically generating HTML. In OnInitializedAsync method which runs automatically during
+    page initialization is an example how data can be loaded from the REST API.<br />
+    "WeatherForecast/Get" is URL path to the endpoint from where we load the data. So we request "Get" method which is inside "WeatherController".
+    <br />
+    - The code for UI part of this example can be found in Client/Pages/FetchData.<br />
+    - The code for Backend (API) part of this example can be found in Server/Controllers/WeatherForecastController
+</p>
+
+<p>
+    <strong>Quadratic Equation</strong> (Task)<br />
+    In first test we want you to create an UI which will be able to solve Quadratic Equation (it's defined as Ax^2 + Bx + C = 0).
+    You have to create three inputs representing numbers A,B and C and a button which <strong>onclick</strong> triggers a calculation and displays results.
+    If needed hint for Quadratic Equation calculation then there is plenty of answers on Google. :)
+    <br />
+    - Code for this task should be written in Client/Pages/QuadraticEquation. No Server side needed (call logic can be in code block)
+</p>
+
+<p>
+    <strong>Tenis Match</strong> (Task)<br />
+    Second task is a bit more complicated as it includes more steps. First you have to read data from the file which is located in Server/TestData/test.csv, then calculate results, load data from Client and display data in the table.
+    The file contains a sequence of numbers. Each number means someone scored a point while the number represents which player was it (player 1 vs player 2). Based on tenis rules you should figure out what was the score of each set and who is the winner.
+    In UI Display simple table (similiar to what we can see on TV screens) showing which player scored how many games in each set. Also tell us who is the winner - figure out some cool way (could be for example separated text or highlight in the scoreboard).
+    <br />
+    - UI Code for this task should be written in Client/Pages/TenisMatch.<br/>
+    - API Controller implementation should be done in Server/Controllers/TennisMatchController<br />
+    - You are not limited to create other classes for data transfer or calculations on the server side.
+</p>
+
+<hr />
+<strong>
+    Tips:
+</strong><br />
+- It's not necessary to Ctrl+F5 every time you change something. It's enough to just build solution (F6) and then refresh the browser (F5).<br />
+- Shared project in the solution is usable on both sides (API and UI) so it's a great place for shared objects if needed.<br />
+- Debugging Client side in the browser is currently not possible. But you can help yourself with Console.WriteLine() which will write stuff to browser's console.
+
+

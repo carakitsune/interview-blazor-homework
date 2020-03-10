@@ -1,0 +1,25 @@
+﻿@page "/TennisMatch"
+@using BlazorApp2.Shared
+@inject HttpClient Http
+
+<div class="card mt-2">
+    <div class="card-header">
+        <h1>Tennis game</h1>
+    </div>
+
+    <div class="card-body">
+        <p>Requirements: Load results of the tennis winner from the backend and display it in table. Also tell us who is the winner.</p>
+    </div>
+
+</div>
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        // TODO: In this case it makes sense to call API directly during initialization.
+        // SO inside this method you should receive the data using API call.
+        // You can however do it your way if you prefer to :)
+    }
+
+}
