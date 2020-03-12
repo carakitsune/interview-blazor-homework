@@ -7,6 +7,32 @@
         <div class="card-body">
             <p>Requirements: Implement 3 number inputs, text result and button for triggering algorithm, which will solve quadratic equation Ax^2 + Bx + C = 0</p>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <p><label for="numberA">Value for variable A:</label><br>
+                    <input type="number" @bind="numberA" /></p>
+                </div>
+                <div class="col-sm">
+                    <p><label for="numberB">Value for variable B:</label><br>
+                    <input type="number" @bind="numberB" /></p>
+                </div>
+                <div class="col-sm">
+                    <p><label for="numberC">Value for variable C:</label><br>
+                    <input type="number" @bind="numberC" /></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <button class="btn btn-primary" @onclick="Calculate">Calculate</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm mt-4" >
+                    @result
+                </div>
+            </div>
+        </div>
     </div>
 <br />
 
@@ -18,5 +44,20 @@
     public double numberB { get; set; }
     public double numberC { get; set; }
 
+    private void Calculate()
+    {
+        var nagativeB = numberB * -1;
 
+        var squareB = numberB * numberB;
+        var fourTimesAC = 4 * numberA * numberC;
+        var squareRoot = Math.Sqrt(squareB - fourTimesAC);
+
+        var upperDevisionPartFirstResult = nagativeB + squareRoot;
+        var upperDevisionPartSecondResult = nagativeB - squareRoot;
+        var lowerDevisionPart = 2 * numberA;
+
+        var firstResult = upperDevisionPartFirstResult / lowerDevisionPart;
+        var secondResult = upperDevisionPartSecondResult / lowerDevisionPart;
+        result = $"The Results are {firstResult} and {secondResult}";
+    }
 }
