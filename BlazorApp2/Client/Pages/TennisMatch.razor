@@ -13,17 +13,23 @@
     <div>
         @if (!requestSuccess) { <div class="alert alert-danger" role="alert">@status</div> }
         else if (result == null) { <p><em>Loading...</em></p> }
-        else { 
-            <p>Result: @result</p>
-            <p>The winner is: @result.winner</p>
-            <p>There are @result.sets.Count()</p>
-            @foreach (var set in result.sets)
-            {
-                <p>Winner in set @result.sets.IndexOf(set) is @set.winner</P>
-            }
+        else {
+            <table class="table table-borderless table-dark">
+                <tbody>
+                    <tr>
+                    <th scope="row">Player 1</th>
+                    @foreach (var set in result.sets) { <td>@set.player1Score</td> }
+                    </tr>
+                    <tr>
+                    <th scope="row">Player 2</th>
+                    @foreach (var set in result.sets){ <td>@set.player2Score</td> }
+                    </tr>
+                </tbody>
+            </table>
             <p>Errors: @result.errors.Count()</p>
 
-            <p><em>Everything is fine</em></p> }
+            <p><em>Everything is fine</em></p> 
+        }
     </div>
 </div>
 
