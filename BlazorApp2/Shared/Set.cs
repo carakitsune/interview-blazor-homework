@@ -48,7 +48,7 @@ namespace BlazorApp2.Shared
             return futureWins;
         }
 
-        private void ScoreWinner(String winner) {
+        private void ScoreWinner(string winner) {
             if (winner == "1") { this.player1Score++; } 
             else { this.player2Score++; }
         }

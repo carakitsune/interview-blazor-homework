@@ -16,13 +16,19 @@ namespace BlazorApp2.Shared
                 Set set = new Set();
                 futureWins = set.Play(true, futureWins);
                 this.sets.Add(set);
+                this.ScoreWinner(set.winner);
                 this.UpdateWinner();
             }
             errors = futureWins;
         }
         private void UpdateWinner() {
-            if (player1Score == 3) {this.winner = "1";}
-            if (player2Score == 3) {this.winner = "2";}
+            if (player1Score == 2) {this.winner = "1";}
+            if (player2Score == 2) {this.winner = "2";}
+        }
+
+        private void ScoreWinner(string winner) {
+            if (winner == "1") { this.player1Score++; } 
+            else { this.player2Score++; }
         }
     }
 }
