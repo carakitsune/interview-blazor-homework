@@ -10,16 +10,65 @@
     <div class="card-body">
         <p>Requirements: Load results of the tennis winner from the backend and display it in table. Also tell us who is the winner.</p>
     </div>
+    <div>
+        @if (!requestSuccess) { <div class="alert alert-danger" role="alert">@status</div> }
+        else if (result == null) { <p><em>Loading...</em></p> }
+        else {
+            <table class="table table-borderless">
+                <tbody>
+                    <tr class=@Player1Class()>
+                    <th scope="row">Player 1</th>
+                    @foreach (var set in result.sets) {
+                        @if (set.inTiebreak) {<td>@set.player1Score (@set.tiebreak.player1Score)</td> }
+                        else {<td>@set.player1Score</td> }
+                    }
+                    </tr>
+                    <tr class=@Player2Class()>
+                    <th scope="row">Player 2</th>
+                    @foreach (var set in result.sets){
+                        @if (set.inTiebreak) {<td>@set.player2Score (@set.tiebreak.player2Score)</td> }
+                        else {<td>@set.player2Score</td> }
+                    }
+                    </tr>
+                </tbody>
+            </table>
+            <p>Errors: @result.errors.Count()</p>
 
+            <p><em>Everything is fine</em></p> 
+        }
+    </div>
 </div>
 
 
 @code {
+    private Match result;
+    private bool requestSuccess = true;
+    private string status;
     protected override async Task OnInitializedAsync()
     {
         // TODO: In this case it makes sense to call API directly during initialization.
         // SO inside this method you should receive the data using API call.
         // You can however do it your way if you prefer to :)
+        try {
+            result = await Http.GetJsonAsync<Match>("TennisMatch/Get");
+        }
+        catch(Exception e) {
+            requestSuccess = false;
+            status = "ERROR: " + e.Message;
+        }   
     }
 
+    private string Player1Class() {
+        if (result.winner == "1") {
+            return "table-active";
+        }
+        return "";
+    }
+
+    private string Player2Class() {
+        if (result.winner == "2") {
+            return "table-active";
+        }
+        return "";
+    }
 }
