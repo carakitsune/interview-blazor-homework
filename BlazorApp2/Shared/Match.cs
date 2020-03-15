@@ -3,12 +3,12 @@ using System.Collections.Generic;
 namespace BlazorApp2.Shared
 {
     public class Match {
-        public string winner;
-        public bool isTiebreakMode;
-        public int player1Score;
-        public int player2Score;
-        public List<Set> sets = new List<Set>();
-        public string[] errors;
+        public string winner { get; set; }
+        public bool isTiebreakMode { get; set; }
+        public int player1Score { get; set; }
+        public int player2Score { get; set; }
+        public List<Set> sets { get; set; } = new List<Set>();
+        public string[] errors { get; set; }
         
         public void Play(string[] wins) {
             string[] futureWins = wins;
@@ -19,15 +19,15 @@ namespace BlazorApp2.Shared
                 this.ScoreWinner(set.winner);
                 this.UpdateWinner();
             }
-            errors = futureWins;
+            this.errors = futureWins;
         }
         private void UpdateWinner() {
-            if (player1Score == 2) {this.winner = "1";}
-            if (player2Score == 2) {this.winner = "2";}
+            if (this.player1Score == 2) {this.winner = "1";}
+            if (this.player2Score == 2) {this.winner = "2";}
         }
 
-        private void ScoreWinner(string winner) {
-            if (winner == "1") { this.player1Score++; } 
+        private void ScoreWinner(string setWinner) {
+            if (setWinner == "1") { this.player1Score++; } 
             else { this.player2Score++; }
         }
     }

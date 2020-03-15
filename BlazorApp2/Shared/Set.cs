@@ -6,22 +6,22 @@ using System.Linq;
 namespace BlazorApp2.Shared
 {
     public class Set {
-        public string winner;
-        public bool isOngoing;
-        public int player1Score;
-        public int player2Score;
-        public List<Game> games = new List<Game>();
-        public Game tiebreak;
-        public bool inTiebreak;
+        public string winner { get; set; }
+        public bool isOngoing { get; set; }
+        public int player1Score { get; set; }
+        public int player2Score { get; set; }
+        public List<Game> games { get; set; } = new List<Game>();
+        public Game tiebreak { get; set; }
+        public bool inTiebreak { get; set; }
 
         public string[] Play(bool isTiebreakMode, string[] wins) {
             List<string> futureWins = new List<string>(wins);
-            while (winner == null) {
+            while (this.winner == null) {
                 if (this.inTiebreak) { futureWins = PlayTiebreak(futureWins); }
                 else { 
                     futureWins = PlayGame(futureWins);
                     this.UpdateWinner();
-                    this.UpdateTiebreak(isTiebreakMode);
+                    this.UpdateInTiebreak(isTiebreakMode);
                 }
             }
             return futureWins.ToArray();
@@ -34,7 +34,7 @@ namespace BlazorApp2.Shared
             }
         }
 
-        private void UpdateTiebreak(bool isTiebreakMode) {
+        private void UpdateInTiebreak(bool isTiebreakMode) {
             if ( isTiebreakMode && this.player1Score == 6 && this.player2Score == 6) 
             { this.inTiebreak = true; }
         }

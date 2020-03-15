@@ -3,12 +3,12 @@ using System.Collections.Generic;
 namespace BlazorApp2.Shared
 {
     public class Game {
-        public string winner;
-        public bool isOngoing = true;
-        public int player1Score;
-        public int player2Score;
+        public string winner { get; set; }
+        public bool isOngoing { get; set; } = true;
+        public int player1Score { get; set; }
+        public int player2Score { get; set; }
 
-        public int minPointsForWin;
+        public int minPointsForWin { get; set; }
 
         public List<string> Play(List<string> wins, int minPointsForWin) {
             List<string> futureWins = new List<string>();
