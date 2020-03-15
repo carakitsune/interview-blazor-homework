@@ -41,8 +41,8 @@ namespace BlazorApp2.Shared
         }
 
         private int ScoreOfEnemy(string player) {
-            if (player == "1") { return this.player1Score; }
-            else { return this.player2Score; }
+            if (player == "1") { return this.player2Score; }
+            else { return this.player1Score; }
         }
     }
 }
