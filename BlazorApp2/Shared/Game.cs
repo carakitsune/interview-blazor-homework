@@ -16,22 +16,29 @@ namespace BlazorApp2.Shared
 
             foreach (var win in wins)
             {
-                if(isOngoing) { this.PlayRound(win); }
+                if(this.isOngoing) {
+                    this.PlayRound(win); 
+                    this.UpdateWinner(win);
+                }
                 else { futureWins.Add(win); }
             }
             return futureWins;
         }
         private void PlayRound (string winningPlayer) {
-            if (this.HasWon(winningPlayer)) {
-                this.isOngoing = false;
-                this.winner = winningPlayer;
-            }
+            System.Console.Write("WinningPlayer: " + winningPlayer + "\n");
             if (winningPlayer == "1") { this.player1Score++; } 
             else { this.player2Score++; }
         }
 
+        private void UpdateWinner(string win) {
+            if (this.HasWon(win)) {
+                this.isOngoing = false;
+                this.winner = win;
+            }
+        }
+
         private bool HasWon(string player) {
-            if (this.minPointsForWin == this.ScoreOf(player) && this.ScoreOf(player) > this.ScoreOfEnemy(player)) { return true; }
+            if (this.minPointsForWin <= this.ScoreOf(player) && this.ScoreOf(player) > this.ScoreOfEnemy(player)+1) { return true; }
             return false;
         }
 

@@ -14,7 +14,7 @@ namespace BlazorApp2.Shared
             string[] futureWins = wins;
             while (this.winner == null) {
                 Set set = new Set();
-                futureWins = set.Play(true, futureWins);
+                futureWins = set.Play(false, futureWins);
                 this.sets.Add(set);
                 this.ScoreWinner(set.winner);
                 this.UpdateWinner();

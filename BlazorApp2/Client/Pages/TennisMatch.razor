@@ -14,15 +14,21 @@
         @if (!requestSuccess) { <div class="alert alert-danger" role="alert">@status</div> }
         else if (result == null) { <p><em>Loading...</em></p> }
         else {
-            <table class="table table-borderless table-dark">
+            <table class="table table-borderless">
                 <tbody>
-                    <tr>
+                    <tr class=@Player1Class()>
                     <th scope="row">Player 1</th>
-                    @foreach (var set in result.sets) { <td>@set.player1Score</td> }
+                    @foreach (var set in result.sets) {
+                        @if (set.inTiebreak) {<td>@set.player1Score (@set.tiebreak.player1Score)</td> }
+                        else {<td>@set.player1Score</td> }
+                    }
                     </tr>
-                    <tr>
+                    <tr class=@Player2Class()>
                     <th scope="row">Player 2</th>
-                    @foreach (var set in result.sets){ <td>@set.player2Score</td> }
+                    @foreach (var set in result.sets){
+                        @if (set.inTiebreak) {<td>@set.player2Score (@set.tiebreak.player2Score)</td> }
+                        else {<td>@set.player2Score</td> }
+                    }
                     </tr>
                 </tbody>
             </table>
@@ -50,5 +56,19 @@
             requestSuccess = false;
             status = "ERROR: " + e.Message;
         }   
+    }
+
+    private string Player1Class() {
+        if (result.winner == "1") {
+            return "table-active";
+        }
+        return "";
+    }
+
+    private string Player2Class() {
+        if (result.winner == "2") {
+            return "table-active";
+        }
+        return "";
     }
 }

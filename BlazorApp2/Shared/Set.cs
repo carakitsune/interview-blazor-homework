@@ -1,7 +1,5 @@
-using BlazorApp2.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BlazorApp2.Shared
 {
@@ -55,7 +53,7 @@ namespace BlazorApp2.Shared
 
         private List<string> PlayTiebreak(List<string> wins) {
             Game game = new Game();
-            List<string> futureWins = game.Play(wins, 6);
+            List<string> futureWins = game.Play(wins, 7);
             this.tiebreak = game;
             this.isOngoing = false;
             this.winner = tiebreak.winner;
